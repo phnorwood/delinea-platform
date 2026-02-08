@@ -298,7 +298,8 @@ Root
    - **Discovery Site:** Select your site
    - **Machine resolution type:** Use Machine and Fully Qualified Name
 7. Click **Save**
-8. In **Add discovery scanners**, click **Save**
+8. Review configuration in **Add discovery scanners**
+9. Click **Save**
 
 ### Step 3: Add Scanners
 
@@ -309,7 +310,6 @@ Root
    - Scheduled Task
    - Windows Service
 3. Review each scanner (no changes needed)
-4. Click **Save**
 
 ### Step 4: Run Discovery
 
@@ -318,7 +318,8 @@ Root
 3. Click **Run discovery now** → **Run discovery scan**
 4. Click **Run discovery now** → **Run computer scan**
 5. Wait 10-15 minutes for initial discovery
-6. Refresh the page to view discovered items
+6. Return to **Discovery → Network View**
+7. Refresh the page to view discovered items
 
 ### Step 5: Create Discovery Source for Identity Protection
 
