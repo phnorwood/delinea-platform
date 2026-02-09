@@ -355,21 +355,13 @@ Root
 ### 2. Enable Session Recording
 
 1. Navigate to **Settings → Administration**
-2. Click **Session Recording → General Settings**
+2. Click **Session Recording General Settings**
 3. Click **Edit**
-4. Enable **Enable session recording**
+4. Check **Enable session recording**
 5. Keep default options selected
 6. Click **Save**
 
-### 3. Configure Platform Groups Sync
-
-1. Navigate to **Settings → Platform Groups Sync**
-2. Click **Configuration**
-3. Click **Edit**
-4. Set **Synchronization Interval** to **1 Hour** (for testing; adjust later)
-5. Click **Save**
-
-### 4. Import Password Changer Account
+### 3. Import Password Changer Account
 
 1. Navigate to **Discovery → Network View**
 2. Search for your password changer account (e.g., `svc_del_changer`)
@@ -386,7 +378,7 @@ Root
 9. Click **Next**
 10. Click **Import**
 
-### 5. Configure Secrets for RPC
+### 4. Configure Secrets for RPC
 
 For any imported Active Directory account secret:
 
@@ -420,15 +412,15 @@ For any imported Active Directory account secret:
 ### 2. Configure RDP Launcher Settings
 
 1. Open the secret you just created
-2. Click **Settings**
+2. Click **Settings** tab
 3. Find **RDP launcher** and click **Edit**
 4. Enable **Allow access to clipboard**
 5. Click **Save**
 
 ### 3. Test PRA Connection
 
-1. Click **Launch** (or **Open with Remote Access**)
-2. Click **Open with Remote Access**
+1. Return to **Overview** tab
+2. Click **Open with Remote Access** under **Launchers**
 3. Enter target computer name (e.g., `server01`)
 4. Click **Continue**
 5. Verify successful connection
@@ -437,7 +429,7 @@ For any imported Active Directory account secret:
 
 ### 4. Review Session Recording
 
-1. Navigate to **Activity → Session Recording**
+1. Navigate to **Insights → Session Review**
 2. Find your recent session
 3. Click to view recording
 4. Verify video playback works
@@ -497,10 +489,10 @@ For each import:
 5. Assign appropriate groups
 6. Click **Invite Users**
 
-### Review Identity Protection Findings
+### Review Identity Posture Findings
 
-1. Navigate to **Identity Protection → Posture Checks**
-2. Review failed checks
+1. Navigate to **Identity Posture → Checks**
+2. Review checks
 3. Click on each check to see affected accounts
 4. Remediate findings as appropriate
 
