@@ -21,7 +21,7 @@
 4. Click **Create Secret**
 5. Select template: **Amazon IAM Key**
 6. Configure:
-   - **Folder:** `/AWS`
+   - **Folder:** `AWS`
    - **Secret Name:** `AWS Discovery Service Account - [Account-ID]`
    - **Access Key ID:** `[AWS Access Key ID]`
    - **Secret Access Key:** `[AWS Secret Access Key]`
@@ -61,10 +61,10 @@
 
 1. The **Add discovery scanners** page appears automatically
 2. Review available scanners:
-   - **AWS IAM User Scanner** - Discovers IAM users
+   - **AWS User Scanner** - Discovers IAM users
    - **AWS Access Key Scanner** - Discovers access keys for IAM users
 3. Click **Add Scanner** for:
-   - ☑ AWS IAM User Scanner
+   - ☑ AWS User Scanner
    - ☑ AWS Access Key Scanner
 4. Click **Save**
 
@@ -84,7 +84,7 @@
 5. Click **Next**
 6. Configure import settings:
    - **Secret Template:** AWS IAM Console Account
-   - **Default Folder:** Select `/AWS`
+   - **Default Folder:** Select `AWS`
    - **Secret Name Pattern:** `AWS IAM - {Username} - [Account-ID]`
 7. Click **Next**
 8. Configure filters (optional):
@@ -103,7 +103,7 @@
 4. Click **Next**
 5. Configure import settings:
    - **Secret Template:** Amazon IAM Key
-   - **Default Folder:** Select `/AWS`
+   - **Default Folder:** Select `AWS`
    - **Secret Name Pattern:** `AWS Access Key - {Username} - [Account-ID]`
 6. Click **Next**
 7. Configure filters (optional):
@@ -131,13 +131,9 @@
 ### 4.2: Review Discovery Results
 
 1. Navigate to **Discovery → Network View**
-2. Click **Accounts** tab
-3. Filter by source: `AWS IAM Users - [Account-Name]`
-4. Review discovered items:
-   - Column **Account Name** shows IAM usernames
-   - Column **Account Type** shows "AWS IAM User" or "AWS Access Key"
-   - Column **Status** shows "Discovered" (not yet imported)
-5. Note the count of discovered users and keys
+2. Select Toggle Panel icon to the left of Search bar
+2. Filter by source: `AWS IAM Users - [Account-Name]`
+3. Review discovered items
 
 ---
 
@@ -145,7 +141,7 @@
 
 ### 5.1: Select Accounts for Import
 
-1. In **Discovery → Network View → Accounts** tab
+1. In **Discovery → Network View** tab
 2. Filter to show only AWS accounts from your discovery source
 3. Review the list of discovered IAM users and access keys
 4. Select accounts to import:
@@ -157,7 +153,7 @@
 
 1. The **Import Accounts** wizard appears
 2. Review pre-populated settings:
-   - **Folder:** Should show `/AWS` (from import rule)
+   - **Folder:** Should show `AWS` (from import rule)
    - **Secret Template:** Should show appropriate template
    - **Site:** Your discovery site
 3. Configure password management:
@@ -182,7 +178,7 @@
 ### 6.1: Check Vault Contents
 
 1. Navigate to **Secret Server → All Secrets**
-2. Browse to folder: `/AWS`
+2. Browse to folder: `AWS`
 3. Verify new secrets appear:
    - Format: `AWS IAM - [username] - [Account-ID]`
    - Format: `AWS Access Key - [username] - [Account-ID]`
@@ -192,71 +188,20 @@
 
 1. Click on one of the imported secrets
 2. Verify **Overview** tab contains:
-   - Access Key ID (for access key secrets)
-   - Username (for IAM user secrets)
-   - Account ID or ARN
+   - Username
+   - Access Key
+   - Secret Key
 3. Click **Discovery** tab
 4. Verify:
    - **Discovery Source:** Shows your AWS discovery source
-   - **Last Discovered:** Shows recent timestamp
-   - **Discovery Status:** Active
+   - **State:** Enabled
+   - **Last Run:** Shows recent timestamp
 
 ---
 
-## Step 7: Configure Continuous Discovery
+## Step 8: Test Discovered Credentials
 
-### 7.1: Set Discovery Schedule
-
-1. Navigate to **Discovery → Sources**
-2. Find your source: `AWS IAM Users - [Account-Name]`
-3. Click the source name to edit
-4. Click **Schedule** tab
-5. Click **Edit**
-6. Configure schedule:
-   - **Enable scheduled discovery:** ☑
-   - **Frequency:** Daily
-   - **Time:** 2:00 AM (or off-hours for your organization)
-7. Click **Save**
-
-### 7.2: Enable Automatic Import (Optional)
-
-1. Still in source configuration
-2. Click **Settings** tab
-3. Click **Edit**
-4. Configure:
-   - **☑ Automatically import new accounts**
-   - **☑ Update existing secrets from discovery**
-5. Click **Save**
-
----
-
-## Step 8: Verify Discovery Logging
-
-### 8.1: Review Discovery Audit Trail
-
-1. Navigate to **Insights → Reports**
-2. Select report: **Discovery Audit Report**
-3. Filter by:
-   - **Discovery Source:** `AWS IAM Users - [Account-Name]`
-   - **Date Range:** Last 7 days
-4. Review logged events:
-   - Discovery scan initiated
-   - Number of accounts found
-   - Accounts imported
-   - User who performed import
-5. Verify timestamps are accurate
-
-### 8.2: Export Discovery Report
-
-1. Click **Export** button
-2. Select format: **CSV** or **PDF**
-3. Save file for compliance documentation
-
----
-
-## Step 9: Test Discovered Credentials
-
-### 9.1: Verify IAM User Secret
+### 8.1: Verify IAM User Secret
 
 1. Navigate to one of the imported IAM user secrets
 2. Click **Overview** tab
@@ -267,7 +212,7 @@
    - Enter password from secret
    - Verify successful authentication (or verify password needs reset if not imported)
 
-### 9.2: Verify Access Key Secret
+### 8.2: Verify Access Key Secret
 
 1. Navigate to one of the imported access key secrets
 2. Click **Overview** tab
@@ -299,8 +244,6 @@ Verify you have successfully completed UC-2:
 - ✅ Discovered accounts imported into vault with proper naming
 - ✅ Secrets created in correct folder structure
 - ✅ Discovery metadata visible in imported secrets
-- ✅ Continuous discovery scheduled for automated ongoing scans
-- ✅ Discovery audit trail generated and exportable
 - ✅ Imported credentials tested and verified functional
 
 ---
