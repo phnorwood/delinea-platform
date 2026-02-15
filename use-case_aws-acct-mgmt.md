@@ -1,0 +1,349 @@
+# UC-1: Centralized Vault for AWS Root/Admin Accounts
+
+**Objective:** Securely store highly privileged AWS root and admin accounts in the Delinea Platform with dual approval for access and complete audit trails for break-glass scenarios.
+
+**Prerequisites:**
+- Delinea Platform tenant configured with admin access
+- Platform Engine and Distributed Engine installed and active
+- AWS root account or IAM admin account credentials available
+- At least two Platform users for dual approval workflow
+
+**Estimated Time:** 30-45 minutes
+
+---
+
+## Step 1: Create Folder Structure for AWS Accounts
+
+1. Log in to your Delinea Platform: `https://[your-tenant].delinea.app`
+2. Navigate to **Secret Server** from the left menu
+3. Click **All Secrets**
+4. Click **New Folder** (folder icon in toolbar)
+5. Create folder structure:
+   ```
+   AWS
+   ├── Root Accounts
+   └── Admin Accounts
+   ```
+   - Folder name: `AWS`
+   - Parent folder: Leave at root level
+   - Click **Create**
+6. Repeat to create subfolders:
+   - `Root Accounts` under `AWS`
+   - `Admin Accounts` under `AWS`
+
+---
+
+## Step 2: Create Secret Template for AWS Accounts (Optional)
+
+*Skip this step if using the built-in "AWS IAM Console Account" or "Web Password" template*
+
+1. Navigate to **Settings → Administration**
+2. Search for and click **Secret Templates**
+3. Click **Create Template**
+4. Configure:
+   - **Template Name:** `AWS Root Account`
+   - **Base Template:** Select **Web Password**
+5. Click **Configure**
+6. Add custom fields (if needed):
+   - Click **Add Field**
+   - Field name: `Account ID`
+   - Field type: Text
+   - Click **Save**
+7. Click **Save Template**
+
+---
+
+## Step 3: Create Approval Workflow for Dual Authorization
+
+### 3.1: Create Approver Group
+
+1. Navigate to **Access → Groups**
+2. Click **Create Group**
+3. Configure:
+   - **Group Name:** `AWS Root Account Approvers`
+   - **Description:** `Users authorized to approve AWS root account access`
+4. Click **Create**
+5. Click **Add Members**
+6. Search for and select at least 2 users who will serve as approvers
+7. Click **Add**
+
+### 3.2: Create Approval Workflow
+
+1. Navigate to **Settings → Administration**
+2. Search for and click **Approval Workflows**
+3. Click **Create Workflow**
+4. Configure:
+   - **Workflow Name:** `AWS Root Account - Dual Approval`
+   - **Description:** `Requires two approvals for AWS root account access`
+5. Click **Next**
+6. Under **Approval Steps**, click **Add Step**
+7. Configure Step 1:
+   - **Step Name:** `First Approval`
+   - **Approvers:** Select group `AWS Root Account Approvers`
+   - **Required Approvals:** `1`
+   - **Approval Duration:** `4 hours` (or your requirement)
+8. Click **Add**
+9. Click **Add Step** again for second approval
+10. Configure Step 2:
+    - **Step Name:** `Second Approval`
+    - **Approvers:** Select group `AWS Root Account Approvers`
+    - **Required Approvals:** `1`
+    - **Approval Duration:** `4 hours`
+11. Click **Add**
+12. Click **Save**
+
+---
+
+## Step 4: Store AWS Root Account Credentials
+
+### 4.1: Create the Secret
+
+1. Navigate to **Secret Server → All Secrets**
+2. Navigate to folder: `AWS → Root Accounts`
+3. Click **Create Secret**
+4. Select template: **AWS IAM Console Account** (or **Web Password**)
+5. Configure secret details:
+   - **Folder:** Confirm `/AWS/Root Accounts`
+   - **Secret Name:** `AWS Root - [Account-ID]` (e.g., `AWS Root - 123456789012`)
+   - **URL:** `https://console.aws.amazon.com`
+   - **Username:** Your AWS root account email
+   - **Password:** Root account password
+   - **Notes:** Add account ID and purpose (e.g., "Production AWS root account")
+6. Click **Create Secret**
+
+### 4.2: Configure Security Settings
+
+1. With the secret open, click the **Security** tab
+2. Click **Edit**
+3. Enable the following settings:
+   - **☑ Require approval for access** → Select workflow: `AWS Root Account - Dual Approval`
+   - **☑ Require comment** (forces users to document reason for access)
+   - **☑ Hide launcher password** (prevents password viewing; forces browser launch only)
+   - **☑ Session recording** (captures all activity during access)
+4. Under **Access Request Options**:
+   - **Default access duration:** `2 hours`
+   - **Maximum access duration:** `4 hours`
+5. Click **Save**
+
+### 4.3: Enable Break-Glass Access
+
+1. Still in the **Security** tab, scroll to **Advanced Settings**
+2. Click **Edit** next to **Emergency Access**
+3. Configure:
+   - **☑ Enable emergency access**
+   - **Emergency access approvers:** Select `System Administrator` group
+   - **Emergency reason required:** ☑ Yes
+   - **Emergency access duration:** `1 hour`
+4. Click **Save**
+
+---
+
+## Step 5: Configure Session Recording Settings
+
+1. Navigate to **Settings → Administration**
+2. Search for and click **Session Recording**
+3. Click **Edit**
+4. Verify settings:
+   - **☑ Enable session recording**
+   - **☑ Record keystrokes**
+   - **☑ Store videos** (keep default: Database)
+   - **Video codec:** H.264/MP4
+5. Click **Save**
+
+---
+
+## Step 6: Set Up Privileged Remote Access for Web Console
+
+### 6.1: Configure Secret Launcher
+
+1. Return to your AWS secret: `AWS Root - [Account-ID]`
+2. Click **Settings** tab
+3. Find **Web Launcher** section
+4. Click **Edit**
+5. Configure:
+   - **☑ Enable launcher**
+   - **Launcher Type:** Web browser
+   - **Launch URL:** Verify `https://console.aws.amazon.com` is populated
+6. Click **Save**
+
+### 6.2: Set Launcher as Preferred Access Method
+
+1. Still in **Settings** tab
+2. Scroll to **General**
+3. Click **Edit**
+4. Set **Default launcher:** `Web Browser`
+5. Click **Save**
+
+---
+
+## Step 7: Test Dual Approval Workflow
+
+### 7.1: Request Access (as regular user)
+
+1. Log out of cloudadmin account
+2. Log in as a regular user (not an approver)
+3. Navigate to **Secret Server → All Secrets**
+4. Browse to `AWS → Root Accounts → AWS Root - [Account-ID]`
+5. Click the secret name
+6. Click **Request Access**
+7. Fill out request form:
+   - **Reason for access:** "Testing dual approval workflow"
+   - **Access duration:** `1 hour`
+8. Click **Submit Request**
+9. Note: You should see "Access request pending approval"
+
+### 7.2: Approve Request (as first approver)
+
+1. Open a separate browser (or incognito window)
+2. Log in as first approver
+3. You should see notification: "You have pending approvals"
+4. Navigate to **Access → Requests** (or click notification)
+5. Find the pending request for AWS root account
+6. Click **Review**
+7. Review request details:
+   - Requester name
+   - Reason provided
+   - Duration requested
+8. Click **Approve**
+9. Add comment: "First approval granted"
+10. Click **Submit**
+
+### 7.3: Approve Request (as second approver)
+
+1. Open another browser (or incognito window)
+2. Log in as second approver
+3. Navigate to **Access → Requests**
+4. Find the same pending request (now showing 1/2 approvals)
+5. Click **Review**
+6. Review request details
+7. Click **Approve**
+8. Add comment: "Second approval granted"
+9. Click **Submit**
+
+### 7.4: Access the Secret
+
+1. Return to the requester's browser session
+2. Refresh the secret page
+3. You should now see **Open with Remote Access** button
+4. Click **Open with Remote Access**
+5. Verify: A new browser tab opens with PRA session to AWS console
+6. The credentials should auto-fill (if using Web Password Filler)
+7. Log in to AWS console
+
+---
+
+## Step 8: Verify Audit Trail
+
+### 8.1: Check Access Logs
+
+1. As Platform administrator, navigate to **Insights → Reports**
+2. Run report: **Secret Access Audit**
+3. Filter by:
+   - Secret name: `AWS Root - [Account-ID]`
+   - Date range: Today
+4. Verify the following events appear:
+   - Access requested by [user]
+   - Approved by [first approver]
+   - Approved by [second approver]
+   - Secret accessed by [user]
+   - Launcher opened by [user]
+
+### 8.2: Review Session Recording
+
+1. Navigate to **Insights → Session Review**
+2. Find the recent session for AWS console access
+3. Click on the session to open details
+4. Verify:
+   - **User:** Shows requester username
+   - **Secret:** Shows `AWS Root - [Account-ID]`
+   - **Duration:** Shows session length
+   - **Status:** Completed
+5. Click **Play** to review video recording
+6. Verify:
+   - Login screen is visible
+   - Actions in AWS console are recorded
+   - Keystrokes are captured (if enabled)
+7. Close video player
+
+### 8.3: Export Audit Report
+
+1. Navigate to **Insights → Reports**
+2. Select report: **Secret Access Audit**
+3. Click **Export**
+4. Select format: **PDF** or **CSV**
+5. Save file for compliance documentation
+
+---
+
+## Step 9: Document Break-Glass Emergency Access
+
+### 9.1: Test Emergency Access (Optional)
+
+1. Log in as System Administrator
+2. Navigate to secret: `AWS Root - [Account-ID]`
+3. Click **Request Emergency Access**
+4. Provide emergency reason: "Testing break-glass procedure"
+5. Click **Submit**
+6. Access should be granted immediately (bypassing normal approval)
+7. Note: Emergency access is fully logged with reason
+
+### 9.2: Create Break-Glass Documentation
+
+Document the following for your organization:
+
+**Emergency Access Contacts:**
+- Primary: [Name, Email, Phone]
+- Secondary: [Name, Email, Phone]
+
+**Break-Glass Procedure:**
+1. Log in to Delinea Platform as System Administrator
+2. Navigate to AWS root account secret
+3. Click "Request Emergency Access"
+4. Provide detailed reason for emergency access
+5. Access will be granted for 1 hour
+6. Complete emergency task
+7. Document all actions taken in incident report
+8. Report emergency access usage to security team within 4 hours
+
+**Post-Emergency Actions:**
+- Review session recording
+- Document all changes made in AWS
+- Update change management system
+- Rotate root account password if compromised
+
+---
+
+## Step 10: Repeat for Additional AWS Accounts
+
+For AWS IAM admin accounts (not root), follow the same process with these modifications:
+
+1. Store in folder: `AWS → Admin Accounts`
+2. Secret name format: `AWS IAM - [Username] - [Account-ID]`
+3. Use same dual approval workflow
+4. Consider reducing approval requirements for non-root IAM accounts (optional)
+
+---
+
+## Success Criteria Verification
+
+Verify you have successfully completed UC-1:
+
+- ✅ AWS root account credentials stored in Platform vault
+- ✅ Dual approval workflow created with two required approvals
+- ✅ Access request successfully submitted
+- ✅ First approval granted by authorized approver
+- ✅ Second approval granted by different authorized approver
+- ✅ User successfully accessed AWS console via PRA
+- ✅ Session recording captured all console activity
+- ✅ Complete audit trail generated showing:
+  - Request timestamp and requester
+  - Both approval timestamps and approvers
+  - Access timestamp
+  - Session recording with video playback
+- ✅ Emergency break-glass access tested and documented
+- ✅ Audit report exported for compliance
+
+---
+
+**Document Version:** 1.0  
+**Last Updated:** February 2026
