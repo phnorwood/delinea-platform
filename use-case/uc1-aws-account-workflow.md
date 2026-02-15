@@ -82,8 +82,8 @@
 1. With the secret open, click the **Security** tab
 2. Click Edit next to Approval
 3. Configure the following settings:
-   - **Approval Type:** Select Approval Always Required
-   - **Approval Workflow:** Select AWS Account - Dual Approval
+   - **Approval Type:** Select `Approval Always Required`
+   - **Approval Workflow:** Select `AWS Account - Dual Approval`
 4. Click **Save**
 
 ### 3.3: Enable Break-Glass Access
