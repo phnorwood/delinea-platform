@@ -82,20 +82,17 @@
 1. With the secret open, click the **Security** tab
 2. Click Edit next to Approval
 3. Configure the following settings:
-   - **Approval Type:** Select `Approval Always Required`
-   - **Approval Workflow:** Select `AWS Account - Dual Approval`
+   - **Approval Type:** `Approval Always Required`
+   - **Approval Workflow:** `AWS Account - Dual Approval`
 4. Click **Save**
-
-### 3.3: Enable Break-Glass Access
-
-1. Still in the **Security** tab, scroll to **Advanced Settings**
-2. Click **Edit** next to **Emergency Access**
-3. Configure:
+5. Still in the **Security** tab, scroll to **Advanced Settings**
+6. Click **Edit** next to **Emergency Access**
+7. Configure:
    - **☑ Enable emergency access**
    - **Emergency access approvers:** Select `System Administrator` group
    - **Emergency reason required:** ☑ Yes
    - **Emergency access duration:** `1 hour`
-4. Click **Save**
+8. Click **Save**
 
 ---
 
