@@ -7,7 +7,7 @@
 - Platform Engine and Distributed Engine installed and active
 - GCP project with service accounts and JSON key files
 - GCP user account with permissions to create service accounts and keys
-- Basic folder structure created (create `/GCP/Service Accounts` folder)
+- Basic folder structure created (create `/GCP` folder)
 
 **Estimated Time:** 45-60 minutes
 
@@ -18,17 +18,9 @@
 1. Log in to Delinea Platform: `https://[your-tenant].delinea.app`
 2. Navigate to **Secret Server → All Secrets**
 3. Click **New Folder**
-4. Create folder structure:
-   ```
-   GCP
-   └── Service Accounts
-   ```
+4. Create folder:
    - Folder name: `GCP`
    - Parent folder: Root level
-   - Click **Create**
-5. Create subfolder:
-   - Folder name: `Service Accounts`
-   - Parent folder: `GCP`
    - Click **Create**
 
 ---
@@ -74,11 +66,11 @@
 ### 3.1: Upload Discovery Service Account Key
 
 1. Navigate to **Secret Server → All Secrets**
-2. Browse to folder: `/GCP/Service Accounts`
+2. Browse to folder: `/GCP`
 3. Click **Create Secret**
 4. Select template: **Google IAM Service Account Key**
 5. Configure:
-   - **Folder:** `/GCP/Service Accounts`
+   - **Folder:** `/GCP`
    - **Secret Name:** `GCP Discovery Service Account - [Project-ID]`
    - **Service Account Email:** Copy from JSON file (`client_email` field)
    - **Private Key ID:** Copy from JSON file (`private_key_id` field)
@@ -93,7 +85,7 @@
 
 For each existing GCP service account key you want to manage:
 
-1. Click **Create Secret** in `/GCP/Service Accounts` folder
+1. Click **Create Secret** in `/GCP` folder
 2. Select template: **Google IAM Service Account Key**
 3. Configure:
    - **Secret Name:** `GCP SA - [service-account-name] - [Project-ID]`
@@ -188,20 +180,18 @@ For each existing GCP service account key you want to manage:
 
 1. On the **Add discovery scanners** page:
    - ☑ GCP Service Account Scanner
-   - ☑ GCP Service Account Key Scanner
 2. Click **Save**
 
 ### 5.4: Run Discovery Scan
 
-1. Navigate to **Discovery → Network View**
-2. Click **Sources** tab
-3. Find your source: `GCP Service Accounts - [Project-Name]`
-4. Click the three dots (⋮) → **Run Discovery Scan**
-5. Click **Run Now**
-6. Wait 5-10 minutes for completion
-7. Navigate to **Discovery → Network View → Accounts** tab
-8. Filter by source to see discovered GCP service accounts
-9. Select accounts and click **Import** to add to vault
+1. Navigate to **Discovery → Sources**
+2. Find your source: `GCP Service Accounts - [Project-Name]`
+3. Click the three dots (⋮) → **Run Discovery Scan**
+4. Click **Run Now**
+5. Wait 5-10 minutes for completion
+6. Navigate to **Discovery → Network View → Accounts** tab
+7. Filter by source to see discovered GCP service accounts
+8. Select accounts and click **Import** to add to vault
 
 ---
 
@@ -389,7 +379,7 @@ rm /tmp/gcp-key.json
 4. Configure:
    - **Subscription Name:** `GCP Service Account Key Access Alert`
    - **Event Type:** Secret View
-   - **Filter by folder:** `/GCP/Service Accounts`
+   - **Filter by folder:** `/GCP`
    - **Alert method:** Email
    - **Recipients:** Security team email
 5. Click **Save**
@@ -399,7 +389,7 @@ rm /tmp/gcp-key.json
 1. Navigate to **Insights → Reports**
 2. Run report: **Secret Access Audit**
 3. Filter by:
-   - Folder: `/GCP/Service Accounts`
+   - Folder: `/GCP`
    - Date range: Last 30 days
 4. Review:
    - Who accessed keys
