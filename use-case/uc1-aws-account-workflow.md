@@ -67,9 +67,9 @@
 1. Navigate to **Secret Server → All Secrets**
 2. Navigate to folder: `AWS`
 3. Click **Create Secret**
-4. Select template: **AWS IAM Console Account** (or **Web Password**)
+4. Select template: **AWS IAM Console Account**
 5. Configure secret details:
-   - **Folder:** Confirm `/AWS`
+   - **Folder:** AWS
    - **Secret Name:** `AWS - [Account-ID]` (e.g., `AWS - 123456789012`)
    - **URL:** `https://console.aws.amazon.com`
    - **Username:** Your AWS account email or username
@@ -80,16 +80,11 @@
 ### 3.2: Configure Security Settings
 
 1. With the secret open, click the **Security** tab
-2. Click **Edit**
-3. Enable the following settings:
-   - **☑ Require approval for access** → Select workflow: `AWS Account - Dual Approval`
-   - **☑ Require comment** (forces users to document reason for access)
-   - **☑ Hide launcher password** (prevents password viewing; forces browser launch only)
-   - **☑ Session recording** (captures all activity during access)
-4. Under **Access Request Options**:
-   - **Default access duration:** `2 hours`
-   - **Maximum access duration:** `4 hours`
-5. Click **Save**
+2. Click Edit next to Approval
+3. Configure the following settings:
+   - **Approval Type:** Select Approval Always Required
+   - **Approval Workflow:** Select AWS Account - Dual Approval
+4. Click **Save**
 
 ### 3.3: Enable Break-Glass Access
 
