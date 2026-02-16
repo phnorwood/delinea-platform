@@ -21,7 +21,7 @@ Each guide is designed to be followed start to finish in a single session, with 
 | [UC-6: Time-Limited Access for Snowflake Privileged Roles](use-case/uc6-snowflake-jit-workaround.md) | Provide time-bound access to Snowflake SYSADMIN credentials with approval workflows and automatic access expiration |
 | [UC-7: Secure SSH Session to Cloud Bastion Hosts](use-case/uc7-ssh-bastion-sessions.md) | Broker SSH sessions to critical bastion/jump hosts with SSH key checkout and keystroke logging |
 | [UC-8: CI/CD Pipeline Integration for Cloud Deployments](use-case/uc8-cicd-pipeline.md) | Configure CI/CD pipelines to retrieve AWS credentials dynamically from the Platform via REST API |
-| [UC-10: Comprehensive Audit Trail for Compliance Reporting](use-case/uc10-audit-compliance.md) | Generate compliance reports showing who accessed which cloud account, when, from where, with session playback capability |
+| [UC-9: Comprehensive Audit Trail for Compliance Reporting](use-case/uc9-audit-compliance.md) | Generate compliance reports showing who accessed which cloud account, when, from where, with session playback capability |
 
 ## License
 
