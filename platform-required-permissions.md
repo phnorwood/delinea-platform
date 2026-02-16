@@ -1,6 +1,6 @@
 # Delinea Discovery & RPC Permissions Reference
 
-This document provides a comprehensive reference of permissions required for Discovery and Remote Password Changing (RPC) across various platforms in Delinea Secret Server and the Delinea Platform (ITDR/CIEM).
+This document provides a comprehensive reference of permissions required for Discovery and Remote Password Changing (RPC) across various platforms in **Delinea Platform**.
 
 ---
 
@@ -15,21 +15,21 @@ This document provides a comprehensive reference of permissions required for Dis
 
 ### RPC - IAM Access Keys (Self-Rotation)
 For accounts rotating their own keys:
-- `iam:DeleteAccessKey` (on own user)
-- `iam:UpdateAccessKey` (on own user)
-- `iam:CreateAccessKey` (on own user)
-- `iam:ListAccessKeys` (on own user)
+- `iam:DeleteAccessKey`
+- `iam:UpdateAccessKey`
+- `iam:CreateAccessKey`
+- `iam:ListAccessKeys`
 
 ### RPC - IAM Access Keys (Privileged)
 For privileged accounts rotating other users' keys:
-- `iam:DeleteAccessKey` (on target user)
-- `iam:UpdateAccessKey` (on target user)
-- `iam:CreateAccessKey` (on target user)
-- `iam:ListAccessKeys` (on target user)
+- `iam:DeleteAccessKey`
+- `iam:UpdateAccessKey`
+- `iam:CreateAccessKey`
+- `iam:ListAccessKeys`
 
 ### RPC - IAM Console Password
-- `iam:UpdateLoginProfile` (privileged account)
-- `iam:ChangePassword` (self-service)
+- `iam:UpdateLoginProfile`
+- `iam:ChangePassword`
 
 ---
 
