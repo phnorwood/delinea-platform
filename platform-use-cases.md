@@ -789,15 +789,4 @@ Apply all recommended controls:
 
 ---
 
-## Support Resources
-
-- **Documentation:** https://docs.delinea.com
-- **Support Portal:** https://support.delinea.com
-- **Community:** https://community.delinea.com
-
----
-
 **Delinea** | Privileged Access Management Made Simple
-
-*Document Version: 1.0*  
-*Last Updated: February 2026*

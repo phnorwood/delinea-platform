@@ -500,7 +500,6 @@ For each import:
 
 ### Documentation and Training
 
-- Bookmark documentation: https://docs.delinea.com/online-help/delinea-platform/start.htm
 - Train users on PRA access
 - Document your folder structure and naming conventions
 - Create runbooks for common administrative tasks
@@ -523,15 +522,4 @@ For each import:
 
 ---
 
-## Support Resources
-
-- **Documentation:** https://docs.delinea.com
-- **Support Portal:** https://support.delinea.com
-- **Community:** https://community.delinea.com
-
----
-
 **Delinea** | Privileged Access Management Made Simple
-
-*Document Version: 1.0*  
-*Last Updated: February 2026*

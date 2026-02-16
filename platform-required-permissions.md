@@ -215,7 +215,3 @@ AWS integrations using CloudFormation automatically provision the required IAM r
 Google Cloud Platform ITDR integration requires Domain-wide Delegation to be configured in Google Workspace Admin Console to grant the service account access to Google Workspace APIs on behalf of users.
 
 ---
-
-*Document Version: 1.0*  
-*Last Updated: February 2026*  
-*Source: Delinea Technical Documentation*

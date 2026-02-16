@@ -194,6 +194,3 @@ Verify you have successfully completed UC-1:
 - ✅ Audit report exported for compliance
 
 ---
-
-**Document Version:** 1.0  
-**Last Updated:** February 2026
