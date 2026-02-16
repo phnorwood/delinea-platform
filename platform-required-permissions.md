@@ -1,10 +1,10 @@
 # Delinea Discovery & RPC Permissions Reference
 
-This document provides a comprehensive reference of permissions required for Discovery and Remote Password Changing (RPC) across various platforms in **Delinea Platform**.
+This document provides a comprehensive reference of permissions required for **Delinea Platform**, including for discovery, management, and CIEM/ITDR.
 
 ---
 
-## AWS
+## Amazon Web Services (AWS)
 
 ### Discovery
 - `iam:ListUsers`
@@ -31,9 +31,6 @@ For privileged accounts rotating other users' keys:
 - `iam:UpdateLoginProfile`
 - `iam:ChangePassword`
 
----
-
-## AWS (ITDR/CIEM)
 
 ### CIEM Discovery
 **CloudTrail Configuration (Required):**
@@ -55,7 +52,7 @@ When integrating AWS Identity Center:
 
 ---
 
-## Google Cloud Platform
+## Google Cloud Platform (GCP)
 
 ### Discovery
 - **Project Viewer** role
@@ -64,10 +61,6 @@ When integrating AWS Identity Center:
 ### RPC/Heartbeat
 - **Service Account Key Admin** role
   - Creates, deletes, and rotates service account keys
-
----
-
-## Google Cloud Platform (ITDR)
 
 ### ITDR Integration
 **Configuration:** Domain-wide Delegation in Google Workspace Admin Console
@@ -91,7 +84,7 @@ These are permission scope identifiers (not URLs to visit) that must be configur
 
 ---
 
-## Entra ID (Microsoft)
+## MSFT Entra ID
 
 ### Discovery
 **Application Permissions Required** (must be Application Permissions, NOT Delegated Permissions):
@@ -103,10 +96,6 @@ These are permission scope identifiers (not URLs to visit) that must be configur
 **Service Principal Role Assignments:**
 - **User Administrator** role (for non-administrator accounts)
 - **Privileged Authentication Administrator** role (for administrator accounts)
-
----
-
-## Entra ID & Azure Cloud (ITDR/CIEM)
 
 ### ITDR/CIEM Integration
 
