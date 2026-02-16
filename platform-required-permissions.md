@@ -15,12 +15,15 @@ This document provides a comprehensive reference of permissions required for **D
 **Machine-Level Permissions:**
 - **Access this computer from the network** permission
 - Membership in local **Administrators** group on target machines
-- **Network access: Restrict clients allowed to make remote calls to SAM** (for Windows Server 2016+, Windows 10 1607+)
   - Discovery account must have **Remote Access** permission allowed
 
 **Service Account Discovery (Additional Requirements):**
 - Must be a **domain account**
 - Must be in the **Administrators** group on target machines
+
+**Windows (Local Accounts):**
+- Membership in local **Administrators** group
+
 
 ### Remote Password Changing (RPC)
 
@@ -185,53 +188,5 @@ These are permission scope identifiers (not URLs to visit) that must be configur
 ### Discovery
 - **Shell Access** permission
 - **Query VRM Policy** permission
-
----
-
-## Windows (Local Accounts)
-
-### Discovery
-**Required Permissions:**
-- **Access this computer from the network** permission
-- Membership in local **Administrators** group
-
-**Additional Requirement (Windows Server 2016+, Windows 10 1607+):**
-- **Network access: Restrict clients allowed to make remote calls to SAM** policy
-  - Discovery account must have **Remote Access** permission allowed
-
-**Applicable to:**
-- Windows Server 2016, 2019
-- Windows 10 version 1607 and later
-- Earlier versions with specific KB updates installed
-
----
-
-## Windows (Services, Scheduled Tasks, App Pools, COM+)
-
-### Discovery
-**Account Requirements:**
-- Domain account
-- Membership in **Administrators** group on target machines
-- **Access this computer from the network** permission
-
-**Best Practice (Optional but Recommended):**
-Limit discovery account login privileges:
-- Add to **Deny log on locally** policy
-- Add to **Deny log on through Remote Desktop Services** policy
-
----
-
-## Notes
-
-### Permission Types
-- **Application Permissions:** Granted at the application/tenant level, do not require user interaction
-- **Delegated Permissions:** Require a signed-in user, permissions are constrained by user's privileges
-- **OAuth Scopes:** Define the level of access granted to an application for specific APIs
-
-### CloudFormation Integration
-AWS integrations using CloudFormation automatically provision the required IAM roles and policies. Manual integrations require creating these roles and policies manually.
-
-### Domain-wide Delegation
-Google Cloud Platform ITDR integration requires Domain-wide Delegation to be configured in Google Workspace Admin Console to grant the service account access to Google Workspace APIs on behalf of users.
 
 ---
