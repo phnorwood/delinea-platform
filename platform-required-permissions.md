@@ -8,8 +8,6 @@ This document provides a comprehensive reference of permissions required for **D
 
 ### Discovery
 
-**Account Requirements:**
-
 **Domain-Level Permissions:**
 - Default AD configuration typically allows scanning computers and users
 - Account must be able to query Active Directory via LDAP
@@ -28,7 +26,6 @@ This document provides a comprehensive reference of permissions required for **D
 
 ### Remote Password Changing (RPC)
 
-**Required Permissions:**
 - Change Password
 - Read lockoutTime
 - Read pwdLastSet
