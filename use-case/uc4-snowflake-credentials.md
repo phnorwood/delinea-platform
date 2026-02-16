@@ -346,7 +346,7 @@ rm /tmp/snowflake_key.p8
 
 ### 9.1: Create Snowflake Integration User
 
-1. Log in to Snowflake as ACCOUNTADMIN
+1. Log in to Snowflake as SECURITYADMIN
 2. Run the following SQL:
 
 ```sql
