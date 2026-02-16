@@ -22,8 +22,6 @@ This document provides a comprehensive reference of permissions required for **D
 - Must be a **domain account**
 - Must be in the **Administrators** group on target machines
 
----
-
 ### Remote Password Changing (RPC)
 
 - Change Password
