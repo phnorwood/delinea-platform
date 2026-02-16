@@ -11,9 +11,6 @@
 
 **Estimated Time:** 60-90 minutes
 
-**⚠️ Important Note:**
-The Delinea Platform REST API is suitable for standard CI/CD pipelines with moderate secret retrieval frequency. For extremely high-velocity scenarios (thousands of requests per minute), DevOps Secrets Vault (DSV) would be required, which is a separate product not included in the Platform.
-
 ---
 
 ## Step 1: Verify AWS Credentials in Platform

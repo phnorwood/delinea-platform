@@ -10,13 +10,6 @@
 
 **Estimated Time:** 30-45 minutes
 
-**⚠️ Important Note:**
-The Delinea Platform does **not** provide automated JIT role elevation for Snowflake (adding/removing SYSADMIN role automatically). Instead, this use case implements:
-- Time-limited credential checkout with approval
-- Automatic credential check-in after time window
-- Full audit of credential usage
-- Manual role assignment by the user after credential checkout
-
 ---
 
 ## Step 1: Understand the Limitation
