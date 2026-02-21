@@ -69,15 +69,7 @@ This document provides a comprehensive reference of permissions required for **D
 - `EC2:DescribeInstances`
 - `EC2:DescribeAvailabilityZones`
 
-### RPC - IAM Access Keys (Self-Rotation)
-For accounts rotating their own keys:
-- `iam:DeleteAccessKey`
-- `iam:UpdateAccessKey`
-- `iam:CreateAccessKey`
-- `iam:ListAccessKeys`
-
-### RPC - IAM Access Keys (Privileged)
-For privileged accounts rotating other users' keys:
+### RPC - IAM Access Keys
 - `iam:DeleteAccessKey`
 - `iam:UpdateAccessKey`
 - `iam:CreateAccessKey`
@@ -86,7 +78,6 @@ For privileged accounts rotating other users' keys:
 ### RPC - IAM Console Password
 - `iam:UpdateLoginProfile`
 - `iam:ChangePassword`
-
 
 ### CIEM Discovery
 **CloudTrail Configuration (Required):**
